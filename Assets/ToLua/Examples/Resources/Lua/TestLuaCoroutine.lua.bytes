@@ -23,6 +23,7 @@ function CoFunc()
 	local s = tolua.tolstring(www.bytes)
 	print(s:sub(1, 128))
     print('Coroutine ended')
+
 end
 
 function TestCortinue()	
