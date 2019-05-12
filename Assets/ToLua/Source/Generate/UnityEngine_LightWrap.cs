@@ -709,8 +709,9 @@ public class UnityEngine_LightWrap
 		{
 			o = ToLua.ToObject(L, 1);
 			UnityEngine.Light obj = (UnityEngine.Light)o;
-			float ret = obj.shadowRadius;
-			LuaDLL.lua_pushnumber(L, ret);
+			//float ret = obj.shadowRadius;
+            float ret = 0;
+            LuaDLL.lua_pushnumber(L, ret);
 			return 1;
 		}
 		catch(Exception e)
@@ -728,8 +729,9 @@ public class UnityEngine_LightWrap
 		{
 			o = ToLua.ToObject(L, 1);
 			UnityEngine.Light obj = (UnityEngine.Light)o;
-			float ret = obj.shadowAngle;
-			LuaDLL.lua_pushnumber(L, ret);
+			//float ret = obj.shadowAngle;
+            float ret = 0;
+            LuaDLL.lua_pushnumber(L, ret);
 			return 1;
 		}
 		catch(Exception e)
@@ -1166,7 +1168,8 @@ public class UnityEngine_LightWrap
 			o = ToLua.ToObject(L, 1);
 			UnityEngine.Light obj = (UnityEngine.Light)o;
 			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
-			obj.shadowRadius = arg0;
+			//obj.shadowRadius = arg0;
+			//obj.shadowRadius = arg0;
 			return 0;
 		}
 		catch(Exception e)
@@ -1185,7 +1188,7 @@ public class UnityEngine_LightWrap
 			o = ToLua.ToObject(L, 1);
 			UnityEngine.Light obj = (UnityEngine.Light)o;
 			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
-			obj.shadowAngle = arg0;
+			//obj.shadowAngle = arg0;
 			return 0;
 		}
 		catch(Exception e)

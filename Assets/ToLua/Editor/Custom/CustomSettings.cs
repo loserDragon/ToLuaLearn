@@ -46,6 +46,8 @@ public static class CustomSettings
     {             
         _GT(typeof(ResourcesMgr)),
         _GT(typeof(UUIEventListener)),
+        _GT(typeof(SUIFW.ABMgr)),
+        _GT(typeof(UnityEngine.UI.Text)),
         //------------------------为例子导出--------------------------------
         //_GT(typeof(TestEventListener)),
         //_GT(typeof(TestProtol)),

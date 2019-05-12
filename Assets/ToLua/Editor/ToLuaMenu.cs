@@ -1108,7 +1108,7 @@ public static class ToLuaMenu
         ClearAllLuaFiles();
         CreateStreamDir(GetOS());
 
-#if !UNITY_5 && !UNITY_2017
+#if !UNITY_5 && !UNITY_2017   &&      !UNITY_2018
         string tempDir = CreateStreamDir("Lua");
 #else
         string tempDir = Application.dataPath + "/temp/Lua";
@@ -1125,7 +1125,7 @@ public static class ToLuaMenu
         List<string> dirs = new List<string>();
         GetAllDirs(tempDir, dirs);
 
-#if UNITY_5 || UNITY_2017
+#if UNITY_5 || UNITY_2017     || UNITY_2018
         for (int i = 0; i < dirs.Count; i++)
         {
             string str = dirs[i].Remove(0, tempDir.Length);

@@ -3,8 +3,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class LuaMgr : MonoBehaviour {
-    private static LuaMgr _instance;
 
     //虚拟机对象
     LuaState luaEnv;
@@ -13,22 +14,31 @@ public class LuaMgr : MonoBehaviour {
     //是否执行update方法
     private bool isExeUpdate = false;
 
-    //单例
-    public static LuaMgr Instance {
+    private static LuaMgr _instance;
+    public  static LuaMgr Instance {
         get {
-            if (null == _instance) {
-                GameObject go = new GameObject("LuaMgr");
-                _instance = go.AddComponent <LuaMgr> ();
-            }
+            if (null == _instance)
+                _instance = new GameObject("LuaMgr").AddComponent<LuaMgr>();
+
             return _instance;
         }
-
     }
 
+    protected  void Awake() {
+        //Instance = this;
+//#if UNITY_5_4_OR_NEWER
+//        SceneManager.sceneLoaded += OnSceneLoaded;
+//#endif  
+    }
+
+    public void StartLua() {
+        Init();
+    }
     //初始化方法
-    public void Init() {
+    protected   void Init() {
         //创建虚拟机
         luaEnv = new LuaState();
+        luaEnv.OpenLibs(LuaDLL.luaopen_pb);
         //启动虚拟机
         luaEnv.Start();
         //委托工厂初始化
@@ -39,8 +49,13 @@ public class LuaMgr : MonoBehaviour {
         LuaLooper lusLoop = gameObject.AddComponent<LuaLooper>();
         //指定虚拟机
         lusLoop.luaState = luaEnv;
+
+        Debug.Log("###################"+PathTools.GetPackerABPath());
+        luaEnv.AddSearchPath(PathTools.GetPackerABPath()+"/LUA");
+        luaEnv.AddSearchPath(PathTools.GetPackerABPath() + "/LUA/lua");
+
         //加载lua的入口文件
-        luaEnv.DoFile("main.lua");
+        luaEnv.DoFile("Main.lua");
         //执行入口函数 ,封装的方法
         LuaCallFunc("Main",gameObject);
         //启动update

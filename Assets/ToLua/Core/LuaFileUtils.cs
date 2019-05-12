@@ -159,7 +159,7 @@ namespace LuaInterface
             {
                 string path = FindFile(fileName);
                 byte[] str = null;
-
+                Debuger.Log("文件："+fileName+"是否存在："+ File.Exists(path));
                 if (!string.IsNullOrEmpty(path) && File.Exists(path))
                 {
 #if !UNITY_WEBPLAYER

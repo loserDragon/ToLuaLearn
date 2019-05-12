@@ -13,14 +13,16 @@ end
 function Panel2.OnClick()
     print("点击了按钮")
     local canvas = UnityEngine.GameObject.Find("Canvas(Clone)")
-    local res =  ResourcesMgr.New()
-    local obj =  res:LoadAsset("UIPrefabs/Panel1",false	)
-	obj.transform:SetParent(canvas.transform,false)
-    Panel1.Start(obj.transform)
-    if transform ~= nil then
-        UnityEngine.GameObject. Destroy(transform.gameObject)
+	local tmp = SUIFW.ABMgr.Instance():LoadAsset("uiprefabs", "uiprefabs/uiprefabs.ab", "Panel1.prefab", false);
+    if tmp then
+        local obj =  UnityEngine.GameObject.Instantiate(tmp)
+        obj.transform:SetParent(canvas.transform,false)
+        Panel1.Start(obj.transform)
+        if transform ~= nil then
+            UnityEngine.GameObject. Destroy(transform.gameObject)
+        end
     end
-    
 end
+
 
 return Panel2

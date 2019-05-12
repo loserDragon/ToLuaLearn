@@ -183,12 +183,14 @@ namespace LuaInterface
                 if (!Directory.Exists(LuaConst.luaDir))
                 {
                     string msg = string.Format("luaDir path not exists: {0}, configer it in LuaConst.cs", LuaConst.luaDir);
+                    Debuger.Log("--------->" + msg);
                     throw new LuaException(msg);
                 }
 
                 if (!Directory.Exists(LuaConst.toluaDir))
                 {
                     string msg = string.Format("toluaDir path not exists: {0}, configer it in LuaConst.cs", LuaConst.toluaDir);
+                    Debuger.Log("--------->" + msg);
                     throw new LuaException(msg);
                 }
 
@@ -197,7 +199,9 @@ namespace LuaInterface
 #endif
                 if (LuaFileUtils.Instance.GetType() == typeof(LuaFileUtils))
                 {
+                    Debuger.Log("--------->"+LuaConst.luaResDir);
                     AddSearchPath(LuaConst.luaResDir);
+                    AddSearchPath(LuaConst.luaResDir1);
                 }
             }
         }

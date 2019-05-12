@@ -84,7 +84,7 @@ public class TestABLoader : MonoBehaviour
 
     void Awake()
     {
-#if UNITY_5 || UNITY_2017
+#if UNITY_5 || UNITY_2017   ||      UNITY_2018
         Application.logMessageReceived += ShowTips;
 #else
         Application.RegisterLogCallback(ShowTips);
@@ -113,7 +113,7 @@ public class TestABLoader : MonoBehaviour
 
     void OnApplicationQuit()
     {
-#if UNITY_5 || UNITY_2017
+#if UNITY_5 || UNITY_2017   ||UNITY_2018
         Application.logMessageReceived -= ShowTips;
 #else
         Application.RegisterLogCallback(null);
@@ -123,6 +123,7 @@ public class TestABLoader : MonoBehaviour
     void OnBundleLoad()
     {                
         LuaState state = new LuaState();
+        state.OpenLibs(LuaDLL.luaopen_pb);
         state.Start();
         state.DoString("print('hello tolua#:'..tostring(Vector3.zero))");
         state.DoFile("Main.lua");
