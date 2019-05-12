@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 1720105546
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: uiprefabs/uiprefabs.ab
+      Dependencies: {}
